@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Validator {
@@ -13,20 +14,26 @@ public class Validator {
         return str;
     }
 
-
     public static int validateQuantityInput(Scanner scanner) {
+
+        int quantity;
+        String str1 = null;
+
         while (!scanner.hasNextInt()) {
             String str = scanner.nextLine().trim();
-            System.out.printf("\"%s\" - не число!\n", str);
-            System.out.print("Введите количество!: ");
+            System.out.printf("\"%s\" - не число!%nВведите количество!: ", str);
         }
-        int quantity = scanner.nextInt();
+
+        quantity = scanner.nextInt();
+
         while (quantity <= 0) {
             System.out.println("Неверное значение! Введите количество: ");
             while (!scanner.hasNextInt()) {
-                String str = scanner.next().trim();
-                System.out.printf("\"%s\" - не число!\n", str);
-                System.out.println("Введите количество!: ");
+                try {
+                    str1 = scanner.next().trim();
+                } catch (InputMismatchException ime) {
+                    System.out.printf("\"%s\" - не число!%nВведите количество!: ", str1);
+                }
             }
             quantity = scanner.nextInt();
         }
@@ -34,18 +41,25 @@ public class Validator {
     }
 
     public static double validatePriceInput(Scanner scanner) {
+
+        double price;
+        String str1 = null;
+
         while (!scanner.hasNextDouble()) {
             String str = scanner.nextLine().trim();
-            System.out.printf("\"%s\" - не число!\n", str);
-            System.out.print("Введите цену!: ");
+            System.out.printf("\"%s\" - не число!%nВведите цену!: ", str);
         }
-        double price = scanner.nextDouble();
+
+        price = scanner.nextDouble();
+
         while (price <= 0) {
             System.out.print("Неверное значение! Введите цену: ");
             while (!scanner.hasNextDouble()) {
-                String str = scanner.nextLine().trim();
-                System.out.printf("\"%s\" - не число!\n", str);
-                System.out.print("Введите цену!: ");
+                try {
+                    str1 = scanner.next().trim();
+                } catch (InputMismatchException ime) {
+                    System.out.printf("\"%s\" - не число!%nВведите цену!: ", str1);
+                }
             }
             price = scanner.nextDouble();
         }
