@@ -7,10 +7,22 @@ public class Validator {
 
     public static String validateName(Scanner scanner) {
         String str = scanner.nextLine().trim();
+        boolean result = str.matches("[а-яёА-ЯЁ]+");
         while (str.isEmpty()) {
             System.out.print("Пусто! Введите имя клиента: ");
             str = scanner.nextLine().trim();
         }
+        while (!result) {
+            try {
+                throw new NameFormatException("Введите имя на русском языке используя только буквы!");
+            } catch (NameFormatException nameFormatException) {
+                System.out.println(str + "- Недопустимые символы!");
+                System.out.println(nameFormatException.getMessage());
+                str = scanner.nextLine().trim();
+            }
+            return str;
+        }
+
         return str;
     }
 
