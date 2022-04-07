@@ -19,6 +19,8 @@ public class Validator {
                 System.out.println(str + "- Недопустимые символы!");
                 System.out.println(nameFormatException.getMessage());
                 str = scanner.nextLine().trim();
+            }catch (Exception e){
+                System.out.println("Непредвиденная ошибка!");
             }
             return str;
         }
@@ -45,6 +47,8 @@ public class Validator {
                     str1 = scanner.next().trim();
                 } catch (InputMismatchException ime) {
                     System.out.printf("\"%s\" - не число!%nВведите количество!: ", str1);
+                }catch (Exception e){
+                    System.out.println("Непредвиденная ошибка!");
                 }
             }
             quantity = scanner.nextInt();
@@ -71,6 +75,8 @@ public class Validator {
                     str1 = scanner.next().trim();
                 } catch (InputMismatchException ime) {
                     System.out.printf("\"%s\" - не число!%nВведите цену!: ", str1);
+                }catch (Exception e){
+                    System.out.println("Непредвиденная ошибка!");
                 }
             }
             price = scanner.nextDouble();
